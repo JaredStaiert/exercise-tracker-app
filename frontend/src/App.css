@@ -1,0 +1,57 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #282c34;
+  border: 6px solid rgb(0, 255, 136);
+}
+
+.app {
+  background-color: #282c34;
+  color: white;
+}
+
+.app div a {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.collection-container {
+  padding: 32px;
+  border-collapse: collapse;
+}
+
+.collection-container th, td {
+  padding: 12px;
+  min-width: 60px;
+}
+
+.collection-container tr {
+  border: 2px solid rgb(80, 109, 255); !important;
+  /*border-radius: 8px;*/
+  border-radius: 10px 100px / 120px;
+  width: 600px;
+  margin-top: 16px;
+}
+
+a {
+  color: rgb(0, 255, 136);
+  border: 2px solid rgb(80, 109, 255);
+  border-radius: 10px 100px / 120px;
+  width: 10%
+}
+
+label, input, select {
+  margin: 10px;
+  display: flex;
+  font-family: "Consolas", monospace;
+}
+
+button {
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-family: "Consolas", monospace;
+}
