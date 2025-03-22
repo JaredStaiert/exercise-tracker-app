@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRegSquarePlus } from "react-icons/fa6";
 
-function HomePage({exerciseToEdit, setExerciseToEdit}) {
+function HomePage({setExerciseToEdit}) {
     const [exercises, setExercises] = useState([]);
     const navigate = useNavigate();
 

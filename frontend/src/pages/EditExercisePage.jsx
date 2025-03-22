@@ -2,7 +2,7 @@ import "../App.css";
 import { useNavigate } from "react-router";
 import {useEffect, useState} from "react";
 
-function EditExercisePage({exerciseToEdit, setExerciseToEdit}) {
+function EditExercisePage({exerciseToEdit}) {
     const [name, setName] = useState();
     const [reps, setReps] = useState();
     const [weight, setWeight] = useState();
@@ -16,7 +16,7 @@ function EditExercisePage({exerciseToEdit, setExerciseToEdit}) {
     }, []);
 
     const getExercise = async () => {
-        const id = exerciseToEdit._id.toString();
+
         const response = await fetch(
             `/exercises/${exerciseToEdit._id}`, { method: "GET" }
         )
