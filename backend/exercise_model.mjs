@@ -22,12 +22,17 @@ async function connect(dropCollection) {
         Exercise = createModel();
         await connection.db.collection("exercises").createIndex(
             { name: 1, reps: 1, weight: 1, unit: 1, date: 1}, { unique: true });
+        await popDummyData();
     } catch (e) {
         console.log(e);
         throw Error(`Could not connect to MongoDB ${e.message}`);
     }
 }
 
+/**
+ * Method defines the schema for mongoose
+ * @returns mongoose model schema (should be assigned to mongoose model class (Exercise in this case))
+ */
 function createModel() {
     const userSchema = mongoose.Schema({
         name: {type: String, required: true},
@@ -41,6 +46,39 @@ function createModel() {
     return mongoose.model("Exercise", userSchema);
 }
 
+/**
+ * Method creates initial items to showcase app features.
+ * @returns {Promise<void>}
+ */
+async function popDummyData() {
+    const names = ["Deadlift", "Squat", "Bench Press", "Bicep Curl"];
+    const reps = [12, 13, 14, 15];
+    const weights = [30, 35, 40, 45];
+    const units = ["kgs", "lbs", "kgs", "lbs"];
+    const dates = ["03-01-2025", "03-02-15", "04-07-42", "08-09-97"];
+
+    try {
+        for (let i = 0; i < 5; i++) {
+            const newExercise = {
+                name: names[i],
+                reps: reps[i],
+                weight: weights[i],
+                unit: units[i],
+                date: dates[i],
+            }
+            await Exercise.insertOne(newExercise);
+        }
+        console.log("Dummy data populated successfully");
+    } catch (e) {
+        console.log("Error populating initial dummy data");
+    }
+}
+
+/**
+ * Method posts provided data to new document in database.
+ * @param exercise
+ * @returns {Promise<{name, reps: (number|{type: Number | NumberConstructor, required: boolean}|*), weight: (number|number|string|*), unit: *, date}>}
+ */
 async function postExercise(exercise) {
     const newExercise = {
             name: exercise.name,
@@ -53,6 +91,11 @@ async function postExercise(exercise) {
     return newExercise;
 }
 
+/**
+ * Method retrieves a document from db using provided filter
+ * @param filter
+ * @returns {Promise<*>}
+ */
 async function getExercisesByFilter(filter) {
     const queryResult = await Exercise.find(filter).exec();
 
@@ -63,15 +106,31 @@ async function getExercisesByFilter(filter) {
     return queryResult;
 }
 
+/**
+ * Method
+ * @param exerciseID
+ * @returns {Promise<*>}
+ */
 async function getExerciseByID(exerciseID) {
     const objectId = new mongoose.Types.ObjectId(exerciseID);
     return await Exercise.findById(objectId).exec();
 }
 
+/**
+ *
+ * @param exerciseID
+ * @param updateInfo
+ * @returns {Promise<*>}
+ */
 async function updateExercise(exerciseID, updateInfo) {
     return await Exercise.updateOne({ _id: exerciseID }, updateInfo);
 }
 
+/**
+ *
+ * @param exerciseID
+ * @returns {Promise<*>}
+ */
 async function deleteExercise(exerciseID) {
     return await Exercise.deleteMany({ _id: exerciseID });
 }
