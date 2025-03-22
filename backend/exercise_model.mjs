@@ -92,7 +92,7 @@ async function postExercise(exercise) {
 }
 
 /**
- * Method retrieves a document from db using provided filter
+ * Method retrieves document(s) from db using provided filter
  * @param filter
  * @returns {Promise<*>}
  */
@@ -107,7 +107,7 @@ async function getExercisesByFilter(filter) {
 }
 
 /**
- * Method
+ * Method retrieves document(s) from db using provided id.
  * @param exerciseID
  * @returns {Promise<*>}
  */
@@ -117,7 +117,7 @@ async function getExerciseByID(exerciseID) {
 }
 
 /**
- *
+ * Method updates properties of document with provided id using provided info.
  * @param exerciseID
  * @param updateInfo
  * @returns {Promise<*>}
@@ -127,7 +127,7 @@ async function updateExercise(exerciseID, updateInfo) {
 }
 
 /**
- *
+ * Method deletes document from db using provided id.
  * @param exerciseID
  * @returns {Promise<*>}
  */
