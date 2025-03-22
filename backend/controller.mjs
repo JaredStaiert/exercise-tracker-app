@@ -80,6 +80,6 @@ app.delete("/exercises/:_id", asyncHandler(async (req, res) => {
 }))
 
 app.listen(PORT, async () => {
-    await exercises.connect(false);
+    await exercises.connect(true);
     console.log(`Server listening on port ${PORT}`);
 });
